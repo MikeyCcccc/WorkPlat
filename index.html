@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Employee Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+        }
+
+        .sidebar {
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 250px;
+            }
+        }
+
+        .sidebar h2 {
+            margin-bottom: 15px;
+        }
+
+        .sidebar .department {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar .department img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .employee-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .employee {
+            width: calc(100% - 20px);
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .employee {
+                width: calc(33% - 20px);
+            }
+        }
+
+        .employee img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar" id="departments">
+        <h2>Departments</h2>
+    </div>
+
+    <div class="content">
+        <div class="employee-list" id="employees">
+            <!-- Employees will be loaded here -->
+        </div>
+    </div>
+
+    <div class="footer" id="totalEmployees">
+        <!-- Total employee count will be displayed here -->
+    </div>
+
+    <script>
+        const departments = [
+            { id: 1, name: 'Strategy', icon: 'icon1.png' },
+            { id: 2, name: 'Marketing', icon: 'icon2.png' },
+            { id: 3, name: 'Media', icon: 'icon3.png' },
+            { id: 4, name: 'Video Production', icon: 'icon4.png' },
+            { id: 5, name: 'Private Sector', icon: 'icon5.png' },
+            { id: 6, name: 'Design', icon: 'icon6.png' },
+            { id: 7, name: 'Technical', icon: 'icon7.png' },
+            { id: 8, name: 'Operations', icon: 'icon8.png' },
+            { id: 9, name: 'Legal', icon: 'icon9.png' }
+        ];
+
+        const employees = [
+            { id: 1, departmentId: 1, name: 'Business Consultant', icon: 'employee1.png', link: 'link1.html' },
+            { id: 2, departmentId: 1, name: 'CEO Strategic Consultant', icon: 'employee2.png', link: 'link2.html' },
+            { id: 3, departmentId: 1, name: 'Personal IP Assistant', icon: 'employee3.png', link: 'link3.html' },
+            // ... add more employees
+        ];
+
+        const departmentContainer = document.getElementById('departments');
+        const employeeContainer = document.getElementById('employees');
+        const footer = document.getElementById('totalEmployees');
+
+        // Load departments
+        departments.forEach(department => {
+            const div = document.createElement('div');
+            div.className = 'department';
+            div.innerHTML = `<img src="${department.icon}" alt=""> ${department.name}`;
+            div.addEventListener('click', () => loadEmployees(department.id));
+            departmentContainer.appendChild(div);
+        });
+
+        // Load employees based on department
+        function loadEmployees(departmentId) {
+            employeeContainer.innerHTML = '';
+            const filteredEmployees = employees.filter(emp => emp.departmentId === departmentId);
+            filteredEmployees.forEach(emp => {
+                const div = document.createElement('div');
+                div.className = 'employee';
+                div.innerHTML = `<img src="${emp.icon}" alt=""> <div>${emp.name}</div>`;
+                div.addEventListener('click', () => window.location.href = emp.link);
+                employeeContainer.appendChild(div);
+            });
+
+            // Update footer
+            footer.innerText = `Total employees: ${filteredEmployees.length}`;
+        }
+    </script>
+</body>
+</html>
