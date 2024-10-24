@@ -80,9 +80,9 @@
             transform: scale(1.05);
         }
 
-        .employee img {
-            width: 50px;
-            height: 50px;
+        .employee .icon {
+            font-size: 4em;
+            margin-bottom: 10px;
         }
 
         .footer {
@@ -190,7 +190,7 @@
             filteredEmployees.forEach(emp => {
                 const div = document.createElement('div');
                 div.className = 'employee';
-                div.innerHTML = `<div style="font-size: 4em;">$2</div> <div style="font-size: 4em;">$2</div>`;
+                div.innerHTML = `<div class="icon">${emp.icon}</div> <div>${emp.name}</div>`;
                 if (emp.link) {
                     div.addEventListener('click', () => {
                         window.open(emp.link, '_blank');
