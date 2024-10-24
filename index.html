@@ -188,7 +188,7 @@
             filteredEmployees.forEach(emp => {
                 const div = document.createElement('div');
                 div.className = 'employee';
-                div.innerHTML = `<div style="font-size: 3em;">$2</div>$4$5</div>`;
+                div.innerHTML = `<div>${emp.icon}</div> <div>${emp.name}</div>`;
                 employeeContainer.appendChild(div);
             });
 
