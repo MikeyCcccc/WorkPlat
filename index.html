@@ -27,23 +27,16 @@
             z-index: 1000;
         }
 
-        @media (min-width: 768px) {
-            body {
-                flex-direction: column;
-            }
+        .main-container {
+            display: flex;
+            flex-grow: 1;
         }
 
         .sidebar {
-            width: 100%;
+            width: 250px;
             background-color: #f4f4f4;
             padding: 20px;
             overflow-y: auto;
-        }
-
-        @media (min-width: 768px) {
-            .sidebar {
-                width: 250px;
-            }
         }
 
         .sidebar h2 {
@@ -68,6 +61,7 @@
         .employee-list {
             display: flex;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .employee {
@@ -78,6 +72,12 @@
             border: 1px solid #ddd;
             text-align: center;
             font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .employee:hover {
+            transform: scale(1.05);
         }
 
         .employee img {
@@ -99,13 +99,15 @@
 <body>
     <div class="header">博锶的AI工作台</div>
 
-    <div class="sidebar" id="departments">
-        <h2>Departments</h2>
-    </div>
+    <div class="main-container">
+        <div class="sidebar" id="departments">
+            <h2>Departments</h2>
+        </div>
 
-    <div class="content">
-        <div class="employee-list" id="employees">
-            <!-- Employees will be loaded here -->
+        <div class="content">
+            <div class="employee-list" id="employees">
+                <!-- Employees will be loaded here -->
+            </div>
         </div>
     </div>
 
@@ -129,43 +131,43 @@
 
         const employees = [
             // 战略部
-            { id: 1, departmentId: 1, name: '企业业务顾问（百问百答）', icon: '💼' }, link: 'https://chatgpt.com/g/g-XGW7qSz5l-gua-he-chan-pin-gu-wen-gua-he-mate',
-            { id: 2, departmentId: 1, name: 'CEO战略顾问（商业策划）', icon: '🧠' }, link: 'https://chatgpt.com/g/g-qyevtMH5I-ma-cheng-de-chao-ji-gu-wen-aiye-wu',
-            { id: 3, departmentId: 1, name: '个人IP文案助手（创始人风格）', icon: '✍️' }, link: 'https://chatgpt.com/g/g-tuDSUOUz6-shao-feng-de-ge-ren-ipwen-an-zhu-shou-gua-he-mate',
+            { id: 1, departmentId: 1, name: '企业业务顾问（百问百答）', icon: '💼', link: 'https://chatgpt.com/g/g-XGW7qSz5l-gua-he-chan-pin-gu-wen-gua-he-mate' },
+            { id: 2, departmentId: 1, name: 'CEO战略顾问（商业策划）', icon: '🧠', link: 'https://chatgpt.com/g/g-qyevtMH5I-ma-cheng-de-chao-ji-gu-wen-aiye-wu' },
+            { id: 3, departmentId: 1, name: '个人IP文案助手（创始人风格）', icon: '✍️', link: 'https://chatgpt.com/g/g-tuDSUOUz6-shao-feng-de-ge-ren-ipwen-an-zhu-shou-gua-he-mate' },
             // 市场部
-            { id: 4, departmentId: 2, name: '市场营销（营销日历）', icon: '📅' }, link: 'https://chatgpt.com/g/g-k3XJyJZRi-ying-xiao-ri-li-zhuan-jia-gua-he-mate',
-            { id: 5, departmentId: 2, name: '市场营销（竞品分析）', icon: '🔍' }, link: 'https://chat-onramp.unified-7.api.openai.com/g/g-sa5xIfL72-jing-pin-fen-xi-zhuan-jia-gua-he-mate',
-            { id: 6, departmentId: 2, name: '商务经理（询单报价）【规划】', icon: '📝' }, link: 'https://chatgpt.com/',
+            { id: 4, departmentId: 2, name: '市场营销（营销日历）', icon: '📅', link: 'https://chatgpt.com/g/g-k3XJyJZRi-ying-xiao-ri-li-zhuan-jia-gua-he-mate' },
+            { id: 5, departmentId: 2, name: '市场营销（竞品分析）', icon: '🔍', link: 'https://chat-onramp.unified-7.api.openai.com/g/g-sa5xIfL72-jing-pin-fen-xi-zhuan-jia-gua-he-mate' },
+            { id: 6, departmentId: 2, name: '商务经理（询单报价）【规划】', icon: '📝', link: 'https://chatgpt.com/' },
             // 自媒体部
-            { id: 7, departmentId: 3, name: '公众号内容策划（官方品宣文案）', icon: '📰' }, link: 'https://chatgpt.com/g/g-Bpczn0uVe-guan-fang-gong-zhong-hao-tui-wen-gua-he-mate',
-            { id: 8, departmentId: 3, name: '小红书内容策划（官方品宣文案）', icon: '📢' }, link: 'https://chatgpt.com/g/g-yu5ufMc06-xiao-hong-shu-wen-an-bian-ji-tuan-dui-zhao-xin',
-            { id: 9, departmentId: 3, name: '小红书内容策划（KOC矩阵文案）', icon: '🤝' }, link: 'https://chatgpt.com/g/g-1NPlsctXV-xiao-hong-shu-chong-cao-bi-ji-gua-he-mate',
+            { id: 7, departmentId: 3, name: '公众号内容策划（官方品宣文案）', icon: '📰', link: 'https://chatgpt.com/g/g-Bpczn0uVe-guan-fang-gong-zhong-hao-tui-wen-gua-he-mate' },
+            { id: 8, departmentId: 3, name: '小红书内容策划（官方品宣文案）', icon: '📢', link: 'https://chatgpt.com/g/g-yu5ufMc06-xiao-hong-shu-wen-an-bian-ji-tuan-dui-zhao-xin' },
+            { id: 9, departmentId: 3, name: '小红书内容策划（KOC矩阵文案）', icon: '🤝', link: 'https://chatgpt.com/g/g-1NPlsctXV-xiao-hong-shu-chong-cao-bi-ji-gua-he-mate' },
             // 视频直播部
-            { id: 10, departmentId: 4, name: '抖音短视频编导（拍摄脚本）', icon: '🎥' }, link: 'https://chatgpt.com/g/g-eDIYpkXtS-duan-shi-pin-pai-she-jiao-ben-she-ji-shi-gua-he-mate',
-            { id: 11, departmentId: 4, name: '抖音短视频策划（口播文案）', icon: '📝' }, link: 'https://chatgpt.com/g/g-4BSsCDrML-shi-pin-hao-dai-huo-zhi-bo-gao-gua-he-mate',
+            { id: 10, departmentId: 4, name: '抖音短视频编导（拍摄脚本）', icon: '🎥', link: 'https://chatgpt.com/g/g-eDIYpkXtS-duan-shi-pin-pai-she-jiao-ben-she-ji-shi-gua-he-mate' },
+            { id: 11, departmentId: 4, name: '抖音短视频策划（口播文案）', icon: '📝', link: 'https://chatgpt.com/g/g-4BSsCDrML-shi-pin-hao-dai-huo-zhi-bo-gao-gua-he-mate' },
             // 私域部
-            { id: 12, departmentId: 5, name: '私域运营（朋友圈文案）', icon: '💬' }, link: 'https://chatgpt.com/g/g-k9c1V136k-yuan-zhou-lu-peng-you-quan-wen-an-zhu-shou-mate',
-            { id: 13, departmentId: 5, name: '私域转化（销售话术）', icon: '💬' }, link: 'https://chatgpt.com/g/g-dPPz2qc7F-yi-mei-hua-zhu-ju-ben-gu-wen-tan-dan-yin-dao',
+            { id: 12, departmentId: 5, name: '私域运营（朋友圈文案）', icon: '💬', link: 'https://chatgpt.com/g/g-k9c1V136k-yuan-zhou-lu-peng-you-quan-wen-an-zhu-shou-mate' },
+            { id: 13, departmentId: 5, name: '私域转化（销售话术）', icon: '💬', link: 'https://chatgpt.com/g/g-dPPz2qc7F-yi-mei-hua-zhu-ju-ben-gu-wen-tan-dan-yin-dao' },
             // 设计部
-            { id: 14, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🖼️' }, link: 'https://chat-onramp.unified-7.api.openai.com/g/g-DVF04kJRg-chan-pin-tu-ku-zhu-shou-gua-he-mate-cun-dang',
-            { id: 15, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🔍' }, link: 'https://chatgpt.com/g/g-cC5wFkSDf-yi-mei-an-li-tu-cha-xun-pi-pei',
-            { id: 16, departmentId: 6, name: '平面设计师（海报底图）', icon: '🖌️' }, link: 'https://chatgpt.com/g/g-RlgNzu68s-ping-mian-she-ji-shi-chuang-yi-hai-bao-yuan-zhou-lu-mate',
-            { id: 17, departmentId: 6, name: '平面设计师（产品概念图）', icon: '🎨' }, link: 'https://chatgpt.com/g/g-fmrrcMADu-chan-pin-gai-nian-tu-she-ji-shi-yuan-zhou-lu-mate',
+            { id: 14, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🖼️', link: 'https://chat-onramp.unified-7.api.openai.com/g/g-DVF04kJRg-chan-pin-tu-ku-zhu-shou-gua-he-mate-cun-dang' },
+            { id: 15, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🔍', link: 'https://chatgpt.com/g/g-cC5wFkSDf-yi-mei-an-li-tu-cha-xun-pi-pei' },
+            { id: 16, departmentId: 6, name: '平面设计师（海报底图）', icon: '🖌️', link: 'https://chatgpt.com/g/g-RlgNzu68s-ping-mian-she-ji-shi-chuang-yi-hai-bao-yuan-zhou-lu-mate' },
+            { id: 17, departmentId: 6, name: '平面设计师（产品概念图）', icon: '🎨', link: 'https://chatgpt.com/g/g-fmrrcMADu-chan-pin-gai-nian-tu-she-ji-shi-yuan-zhou-lu-mate' },
             // 技术部
             { id: 18, departmentId: 7, name: '生产合规专员（标准查询）', icon: '📚' },
             { id: 19, departmentId: 7, name: '生产工单主管（工单制定）', icon: '📝' },
             // 运营部
-            { id: 20, departmentId: 8, name: '数据分析师（电商订单）', icon: '📊' }, link: 'https://chatgpt.com/g/g-5yexgf5i3-dian-shang-shu-ju-fen-xi-shi-gua-he-mate',
-            { id: 21, departmentId: 8, name: '电商运营（产品详情页文案）', icon: '🛒' }, link: 'https://chatgpt.com/g/g-ekEr2WowL-chan-pin-xiang-qing-ye-zong-lan-tu-gua-he-mate',
-            { id: 22, departmentId: 8, name: '会务秘书（会务纪要）', icon: '📑' }, link: 'https://chatgpt.com/g/g-0e7ABpvdS-yuan-zhou-lu-ai-hui-yi-ji-lu-zheng-li-zhu-shou',
-            { id: 23, departmentId: 8, name: '会务秘书（FAQ整理）', icon: '📑' }, link: 'https://chatgpt.com/g/g-ZPlH8sTlR-yuan-zhou-lu-ai-faqzheng-li-pro',
-            { id: 24, departmentId: 8, name: '会务秘书（思维导图流程图）', icon: '🧩' }, link: 'https://chatgpt.com/g/g-57aNlnUEv-si-wei-dao-tu-liu-cheng-tu-zhu-shou-gua-he-mate',
+            { id: 20, departmentId: 8, name: '数据分析师（电商订单）', icon: '📊', link: 'https://chatgpt.com/g/g-5yexgf5i3-dian-shang-shu-ju-fen-xi-shi-gua-he-mate' },
+            { id: 21, departmentId: 8, name: '电商运营（产品详情页文案）', icon: '🛒', link: 'https://chatgpt.com/g/g-ekEr2WowL-chan-pin-xiang-qing-ye-zong-lan-tu-gua-he-mate' },
+            { id: 22, departmentId: 8, name: '会务秘书（会务纪要）', icon: '📑', link: 'https://chatgpt.com/g/g-0e7ABpvdS-yuan-zhou-lu-ai-hui-yi-ji-lu-zheng-li-zhu-shou' },
+            { id: 23, departmentId: 8, name: '会务秘书（FAQ整理）', icon: '📑', link: 'https://chatgpt.com/g/g-ZPlH8sTlR-yuan-zhou-lu-ai-faqzheng-li-pro' },
+            { id: 24, departmentId: 8, name: '会务秘书（思维导图流程图）', icon: '🧩', link: 'https://chatgpt.com/g/g-57aNlnUEv-si-wei-dao-tu-liu-cheng-tu-zhu-shou-gua-he-mate' },
             // 法务部
-            { id: 25, departmentId: 9, name: '法务顾问（法律咨询）', icon: '👩‍⚖️' }, link: 'https://chatgpt.com/g/g-HpVjkPKHX-yuan-zhou-lu-ai-fa-lu-gu-wen-pro',
-            { id: 26, departmentId: 9, name: '法务顾问（合同撰写）', icon: '✍️' }, link: 'https://chatgpt.com/g/g-MHc3n0tOG-shang-ye-he-tong-zhu-shou-gua-he-mate',
-            { id: 27, departmentId: 9, name: '法务顾问（合同审核）', icon: '🔍' }, link: 'https://chatgpt.com/g/g-5BQkpOuT0-he-tong-tiao-kuan-shen-he-gua-he-mate',
+            { id: 25, departmentId: 9, name: '法务顾问（法律咨询）', icon: '👩‍⚖️', link: 'https://chatgpt.com/g/g-HpVjkPKHX-yuan-zhou-lu-ai-fa-lu-gu-wen-pro' },
+            { id: 26, departmentId: 9, name: '法务顾问（合同撰写）', icon: '✍️', link: 'https://chatgpt.com/g/g-MHc3n0tOG-shang-ye-he-tong-zhu-shou-gua-he-mate' },
+            { id: 27, departmentId: 9, name: '法务顾问（合同审核）', icon: '🔍', link: 'https://chatgpt.com/g/g-5BQkpOuT0-he-tong-tiao-kuan-shen-he-gua-he-mate' },
             // 财务部
-            { id: 28, departmentId: 10, name: '财务顾问（财报分析）', icon: '💰' }, link: 'https://chatgpt.com/g/g-Q9JPVC7aK-jia-dian-xing-ye-cai-wu-fen-xi-gua-he-mate'
+            { id: 28, departmentId: 10, name: '财务顾问（财报分析）', icon: '💰', link: 'https://chatgpt.com/g/g-Q9JPVC7aK-jia-dian-xing-ye-cai-wu-fen-xi-gua-he-mate' }
         ];
 
         const departmentContainer = document.getElementById('departments');
@@ -189,6 +191,11 @@
                 const div = document.createElement('div');
                 div.className = 'employee';
                 div.innerHTML = `<div>${emp.icon}</div> <div>${emp.name}</div>`;
+                if (emp.link) {
+                    div.addEventListener('click', () => {
+                        window.open(emp.link, '_blank');
+                    });
+                }
                 employeeContainer.appendChild(div);
             });
 
