@@ -213,6 +213,12 @@
             // Update footer
             footer.innerText = `您的数字员工数量: ${employees.length}`;
         }
+            document.addEventListener('DOMContentLoaded', function() {
+            const firstDepartment = document.querySelector('.department');
+            if (firstDepartment) {
+                firstDepartment.click();
+            }
+        });
     </script>
 </body>
 </html>
