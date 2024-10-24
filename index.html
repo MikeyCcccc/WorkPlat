@@ -14,6 +14,18 @@
             margin: 0;
         }
 
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         @media (min-width: 768px) {
             body {
                 flex-direction: row;
@@ -35,6 +47,7 @@
 
         .sidebar h2 {
             margin-bottom: 15px;
+            font-size: 1.5em;
         }
 
         .sidebar .department {
@@ -42,12 +55,7 @@
             align-items: center;
             margin-bottom: 15px;
             cursor: pointer;
-        }
-
-        .sidebar .department img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
+            font-size: 1.2em;
         }
 
         .content {
@@ -62,19 +70,13 @@
         }
 
         .employee {
-            width: calc(100% - 20px);
+            width: calc(33.33% - 20px);
             margin: 10px;
             padding: 20px;
             background-color: #fff;
             border: 1px solid #ddd;
             text-align: center;
-            cursor: pointer;
-        }
-
-        @media (min-width: 768px) {
-            .employee {
-                width: calc(33% - 20px);
-            }
+            font-size: 1.2em;
         }
 
         .employee img {
@@ -89,10 +91,12 @@
             background-color: #f4f4f4;
             padding: 10px;
             border-radius: 5px;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
+    <div class="header">博锶的AI工作台</div>
 
     <div class="sidebar" id="departments">
         <h2>Departments</h2>
@@ -124,43 +128,43 @@
 
         const employees = [
             // 战略部
-            { id: 1, departmentId: 1, name: '💼 企业业务顾问（百问百答）', icon: 'employee1.png', link: 'link1.html' },
-            { id: 2, departmentId: 1, name: '🧠 CEO战略顾问（商业策划）', icon: 'employee2.png', link: 'link2.html' },
-            { id: 3, departmentId: 1, name: '✍️ 个人IP文案助手（创始人风格）', icon: 'employee3.png', link: 'link3.html' },
+            { id: 1, departmentId: 1, name: '企业业务顾问（百问百答）', icon: '💼' },
+            { id: 2, departmentId: 1, name: 'CEO战略顾问（商业策划）', icon: '🧠' },
+            { id: 3, departmentId: 1, name: '个人IP文案助手（创始人风格）', icon: '✍️' },
             // 市场部
-            { id: 4, departmentId: 2, name: '📅 市场营销（营销日历）', icon: 'employee4.png', link: 'link4.html' },
-            { id: 5, departmentId: 2, name: '🔍 市场营销（竞品分析）', icon: 'employee5.png', link: 'link5.html' },
-            { id: 6, departmentId: 2, name: '📝 商务经理（询单报价）【规划】', icon: 'employee6.png', link: 'link6.html' },
+            { id: 4, departmentId: 2, name: '市场营销（营销日历）', icon: '📅' },
+            { id: 5, departmentId: 2, name: '市场营销（竞品分析）', icon: '🔍' },
+            { id: 6, departmentId: 2, name: '商务经理（询单报价）【规划】', icon: '📝' },
             // 自媒体部
-            { id: 7, departmentId: 3, name: '📰 公众号内容策划（官方品宣文案）', icon: 'employee7.png', link: 'link7.html' },
-            { id: 8, departmentId: 3, name: '📢 小红书内容策划（官方品宣文案）', icon: 'employee8.png', link: 'link8.html' },
-            { id: 9, departmentId: 3, name: '🤝 小红书内容策划（KOC矩阵文案）', icon: 'employee9.png', link: 'link9.html' },
+            { id: 7, departmentId: 3, name: '公众号内容策划（官方品宣文案）', icon: '📰' },
+            { id: 8, departmentId: 3, name: '小红书内容策划（官方品宣文案）', icon: '📢' },
+            { id: 9, departmentId: 3, name: '小红书内容策划（KOC矩阵文案）', icon: '🤝' },
             // 视频直播部
-            { id: 10, departmentId: 4, name: '🎥 抖音短视频编导（拍摄脚本）', icon: 'employee10.png', link: 'link10.html' },
-            { id: 11, departmentId: 4, name: '📝 抖音短视频策划（口播文案）', icon: 'employee11.png', link: 'link11.html' },
+            { id: 10, departmentId: 4, name: '抖音短视频编导（拍摄脚本）', icon: '🎥' },
+            { id: 11, departmentId: 4, name: '抖音短视频策划（口播文案）', icon: '📝' },
             // 私域部
-            { id: 12, departmentId: 5, name: '💬 私域运营（朋友圈文案）', icon: 'employee12.png', link: 'link12.html' },
-            { id: 13, departmentId: 5, name: '💬 私域转化（销售话术）', icon: 'employee13.png', link: 'link13.html' },
+            { id: 12, departmentId: 5, name: '私域运营（朋友圈文案）', icon: '💬' },
+            { id: 13, departmentId: 5, name: '私域转化（销售话术）', icon: '💬' },
             // 设计部
-            { id: 14, departmentId: 6, name: '🖼️ 平面设计师（素材图片查找）', icon: 'employee14.png', link: 'link14.html' },
-            { id: 15, departmentId: 6, name: '🔍 平面设计师（素材图片查找）', icon: 'employee15.png', link: 'link15.html' },
-            { id: 16, departmentId: 6, name: '🖌️ 平面设计师（海报底图）', icon: 'employee16.png', link: 'link16.html' },
-            { id: 17, departmentId: 6, name: '🎨 平面设计师（产品概念图）', icon: 'employee17.png', link: 'link17.html' },
+            { id: 14, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🖼️' },
+            { id: 15, departmentId: 6, name: '平面设计师（素材图片查找）', icon: '🔍' },
+            { id: 16, departmentId: 6, name: '平面设计师（海报底图）', icon: '🖌️' },
+            { id: 17, departmentId: 6, name: '平面设计师（产品概念图）', icon: '🎨' },
             // 技术部
-            { id: 18, departmentId: 7, name: '📚 生产合规专员（标准查询）', icon: 'employee18.png', link: 'link18.html' },
-            { id: 19, departmentId: 7, name: '📝 生产工单主管（工单制定）', icon: 'employee19.png', link: 'link19.html' },
+            { id: 18, departmentId: 7, name: '生产合规专员（标准查询）', icon: '📚' },
+            { id: 19, departmentId: 7, name: '生产工单主管（工单制定）', icon: '📝' },
             // 运营部
-            { id: 20, departmentId: 8, name: '📊 数据分析师（电商订单）', icon: 'employee20.png', link: 'link20.html' },
-            { id: 21, departmentId: 8, name: '🛒 电商运营（产品详情页文案）', icon: 'employee21.png', link: 'link21.html' },
-            { id: 22, departmentId: 8, name: '📑 会务秘书（会务纪要）', icon: 'employee22.png', link: 'link22.html' },
-            { id: 23, departmentId: 8, name: '📑 会务秘书（FAQ整理）', icon: 'employee23.png', link: 'link23.html' },
-            { id: 24, departmentId: 8, name: '🧩 会务秘书（思维导图流程图）', icon: 'employee24.png', link: 'link24.html' },
+            { id: 20, departmentId: 8, name: '数据分析师（电商订单）', icon: '📊' },
+            { id: 21, departmentId: 8, name: '电商运营（产品详情页文案）', icon: '🛒' },
+            { id: 22, departmentId: 8, name: '会务秘书（会务纪要）', icon: '📑' },
+            { id: 23, departmentId: 8, name: '会务秘书（FAQ整理）', icon: '📑' },
+            { id: 24, departmentId: 8, name: '会务秘书（思维导图流程图）', icon: '🧩' },
             // 法务部
-            { id: 25, departmentId: 9, name: '👩‍⚖️ 法务顾问（法律咨询）', icon: 'employee25.png', link: 'link25.html' },
-            { id: 26, departmentId: 9, name: '✍️ 法务顾问（合同撰写）', icon: 'employee26.png', link: 'link26.html' },
-            { id: 27, departmentId: 9, name: '🔍 法务顾问（合同审核）', icon: 'employee27.png', link: 'link27.html' },
+            { id: 25, departmentId: 9, name: '法务顾问（法律咨询）', icon: '👩‍⚖️' },
+            { id: 26, departmentId: 9, name: '法务顾问（合同撰写）', icon: '✍️' },
+            { id: 27, departmentId: 9, name: '法务顾问（合同审核）', icon: '🔍' },
             // 财务部
-            { id: 28, departmentId: 10, name: '💰 财务顾问（财报分析）', icon: 'employee28.png', link: 'link28.html' }
+            { id: 28, departmentId: 10, name: '财务顾问（财报分析）', icon: '💰' }
         ];
 
         const departmentContainer = document.getElementById('departments');
@@ -183,8 +187,7 @@
             filteredEmployees.forEach(emp => {
                 const div = document.createElement('div');
                 div.className = 'employee';
-                div.innerHTML = `<img src="${emp.icon}" alt=""> <div>${emp.name}</div>`;
-                div.addEventListener('click', () => window.location.href = emp.link);
+                div.innerHTML = `<div>${emp.icon}</div> <div>${emp.name}</div>`;
                 employeeContainer.appendChild(div);
             });
 
