@@ -101,7 +101,7 @@
 
     <div class="main-container">
         <div class="sidebar" id="departments">
-            <h2>数字部门</h2>
+            <h2>Departments</h2>
         </div>
 
         <div class="content">
@@ -112,7 +112,7 @@
     </div>
 
     <div class="footer" id="totalEmployees">
-        <!-- footer.innerText = `数字员工数量: ${employees.length}`; -->
+        <!-- Total employee count will be displayed here -->
     </div>
 
     <script>
@@ -200,7 +200,8 @@
             });
 
             // Update footer
-            footer.innerText = `数字员工数量: " + employees.length
-    }
-  ]
-}
+            footer.innerText = `Total employees: ${filteredEmployees.length}`;
+        }
+    </script>
+</body>
+</html>
